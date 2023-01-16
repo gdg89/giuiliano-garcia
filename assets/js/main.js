@@ -8,14 +8,34 @@ const navMenu = document.querySelector('.nav__menu');
 const menuContainer = document.querySelector('.menu-container');
 
 
+
 // open-close menu
 navMenu.addEventListener('click', function (e) {
-    menuContainer.classList.toggle('hidden');
+     //Show or hidde menu
+    showHideMenu();
     //change menu-close button
     closeMenuBtn();
     //Hide Scrollbar
     hideScrollbar();
 });
+
+function showHideMenu(){
+    const menuHidden = menuContainer.classList.contains('hidden');
+    const menuOpacity = menuContainer.classList.contains('opacity');
+
+    if(menuHidden && menuOpacity){
+        menuContainer.classList.remove('hidden');
+        setTimeout(()=>{
+            menuContainer.classList.remove('opacity');
+        }, 100);
+    }else{
+        menuContainer.classList.add('opacity');
+        setTimeout(()=>{
+            menuContainer.classList.add('hidden');
+        }, 1000);
+    }
+    
+}
 
 /* button open-close menu  */
 function closeMenuBtn() {
@@ -48,11 +68,13 @@ const menuLinks = document.querySelectorAll('.menu__link');
 //hide menu and change close button
 menuLinks.forEach(link => {
     link.addEventListener('click', function (e) {
-        menuContainer.classList.toggle('hidden');
+        showHideMenu();
         closeMenuBtn();
         hideScrollbar();
     });
 });
+
+
 
 
 
