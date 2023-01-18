@@ -32,8 +32,7 @@ Fonts
 Global styles
 ==============
  */
-body,
-body a {
+body, body a{
     color: rgb(255, 252, 252);
 }
 
@@ -171,7 +170,7 @@ header {
     padding-top: 30px;
     left: 0;
     background: var(--clr-black);
-    transition: all 0.7s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .menu {
@@ -249,7 +248,7 @@ header {
     display: flex;
     align-items: center;
     padding: 5%;
-    transition: all 1s linear;
+    transition: height 1s linear;
 }
 
 .banner {
