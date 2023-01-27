@@ -387,6 +387,7 @@ about-me
     position: relative;
     display: flex;
     justify-content: space-between;
+    transition: top 0.25s ease-in-out;
 }
 
 /* --- pagination buttons --- */
