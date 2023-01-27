@@ -7,35 +7,33 @@
 const navMenu = document.querySelector('.nav__menu');
 const menuContainer = document.querySelector('.menu-container');
 
-
-
 //Show or hidde menu
-navMenu.addEventListener('click', function() {
+navMenu.addEventListener('click', function () {
     showHideMenu();
-    
+
 });
 
-function showHideMenu(){
+function showHideMenu() {
     const menuHidden = menuContainer.classList.contains('hidden');
     const menuOpacity = menuContainer.classList.contains('opacity');
 
-    if(menuHidden && menuOpacity){
+    if (menuHidden && menuOpacity) {
         menuContainer.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
-       
-        setTimeout(()=>{
+
+        setTimeout(() => {
             menuContainer.classList.remove('opacity');
         }, 100);
-    }else{
+    } else {
         menuContainer.classList.add('opacity');
         document.body.style.overflow = 'visible';
-        
-        setTimeout(()=>{
+
+        setTimeout(() => {
             menuContainer.classList.add('hidden');
-        },300);
+        }, 300);
 
     }
-     closeMenuBtn(); 
+    closeMenuBtn();
 
 }
 
@@ -90,6 +88,7 @@ const slides = document.querySelectorAll('.slide');
 const nextBtn = document.querySelector('.nextBtn');
 const prevBtn = document.querySelector('.prevBtn');
 const bullets = document.querySelectorAll('.pagination__bullet')
+const pagination = document.querySelector('.slider__pagination-container');
 
 // hide prevBtn
 prevBtn.style.visibility = "hidden";
@@ -104,20 +103,36 @@ nextBtn.addEventListener('click', function () {
     paginationBtns();
     slide();
     sliderPagination();
-
+    paginationPosition();
 });
+
 prevBtn.addEventListener('click', function () {
     counter--;
     paginationBtns();
     slide();
     sliderPagination();
-
+    paginationPosition();
 });
 
+// dynamic pagination position
+function paginationPosition() {
+    slides.forEach(slide => {
+        const slideHeight = slide.offsetHeight;
+        const active = slide.classList.contains('active');
+        const paginationPosition = slideHeight + 20;
+
+        if (active) {
+            pagination.style.top = `${paginationPosition}px`;
+        }
+    });
+};
+paginationPosition();
 
 
 
-function paginationBtns(){
+
+
+function paginationBtns() {
     //show next btn
     if (counter < slides.length - 1) {
         nextBtn.style.visibility = "visible";
@@ -135,7 +150,7 @@ function paginationBtns(){
 }
 
 function slide() {
-     slides.forEach((slide, index) => {
+    slides.forEach((slide, index) => {
         slide.style.transform = `translateX(-${counter * 100}%)`;
         if (counter == index) {
             slide.classList.add('active');
@@ -145,13 +160,13 @@ function slide() {
     });
 }
 
-function sliderPagination(){
-    slides.forEach((slide, index) =>{
+function sliderPagination() {
+    slides.forEach((slide, index) => {
         const active = slide.classList.contains('active');
-        if(active){
+        if (active) {
             bullets[index].classList.add('active-bullet');
-        }else{
-            bullets[index].classList.remove('active-bullet')
+        } else {
+            bullets[index].classList.remove('active-bullet');
         }
     });
 }
